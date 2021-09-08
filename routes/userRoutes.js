@@ -1,19 +1,14 @@
 const express = require('express');
-const userRouter = express.Router();
+const loginRouter = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/keys')
-const { userModel } = require('../database/models/user');
+const { userModel } = require('../database/models/models');
 const { signupValidation, signinValidation } = require('../shared/validation');
-const user = require('../database/models/user');
-
-userRouter.route("/").get(async (req, res) => {
-    res.send("hello")
-})
 
 // User Signup Route
 
-userRouter.route("/signup")
+loginRouter.route("/signup")
     .get(async (req, res) => {
         const result = await userModel.find({})
         res.status(200).send(result);
@@ -48,22 +43,9 @@ userRouter.route("/signup")
 
     })
 
-userRouter.route("/signup/:id")
-    .get(async (req, res) => {
-        const { id } = req.params;
-        const result = await userModel.findById(id)
-        if (!result) return res.status(404).json({ message: "not exist" })
-        res.status(200).json({ result })
-    })
-    .delete(async (req, res) => {
-        const { id } = req.params;
-        const result = await userModel.findByIdAndRemove(id)
-        res.status(200).json({ message: "deleted successfully", result })
-    })
-
 // User Signin Route
 
-userRouter.route("/signin")
+loginRouter.route("/signin")
     .post(async (req, res) => {
         let { email, password } = req.body;
         try {
@@ -77,9 +59,11 @@ userRouter.route("/signin")
             const isExist = await userModel.findOne({ email })
             if (!isExist) return res.status(404).json({ message: "User does'nt Exists" });
 
-            // Encrypting the user Password
+            // Checking the user Password
             const isPasswordCorrect = await bcrypt.compare(password, isExist.password);
             if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
+
+            // Creating Jwt Token
             const token = jwt.sign({ _id: isExist._id, email: isExist.email }, jwtSecret)
 
             // Sending response to the user
@@ -91,4 +75,18 @@ userRouter.route("/signin")
         }
     })
 
-module.exports = userRouter;
+loginRouter.route("/signup/:id")
+    .get(async (req, res) => {
+        const { id } = req.params;
+        const result = await userModel.findById(id)
+        if (!result) return res.status(404).json({ message: "not exist" })
+        res.status(200).json({ result })
+    })
+    .delete(async (req, res) => {
+        const { id } = req.params;
+        const result = await userModel.findByIdAndRemove(id)
+        res.status(200).json({ message: "deleted successfully", result })
+    })
+
+
+module.exports = loginRouter;

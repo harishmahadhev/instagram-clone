@@ -17,6 +17,7 @@ const signinValidation = (data) => {
     })
     return schema.validate(data)
 }
+
 module.exports = {
     signinValidation, signupValidation
 
