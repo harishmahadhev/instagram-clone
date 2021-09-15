@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 import * as api from "../api/Api";
-// import { refreshPage } from "./Shared";
+import { refreshPage } from "./Shared";
 
 export default function PostComponent({ post, profile }) {
   const [likes, setLikes] = useState(post.likes);
@@ -27,7 +27,7 @@ export default function PostComponent({ post, profile }) {
 
   const deletePost = async (id) => {
     await api.deletePost({ id });
-    // refreshPage();
+    refreshPage();
   };
 
   const handleClick = (id) => {

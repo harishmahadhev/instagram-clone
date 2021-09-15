@@ -39,7 +39,7 @@ export default function App() {
       <Navbar profile={profile} />
       <div className="container">
         <Switch>
-          <Route path="/app/home" ><Home posts={posts} setPosts={setPosts} users={users} profile={profile} /></Route>
+          <Route path="/app/home" ><Home posts={posts} users={users} profile={profile} /></Route>
           <Route exact path="/app/profile" ><Profile myposts={myposts} profile={profile} /></Route>
           <Route path="/app/profile/:id" ><OtherProfile Cur_id={profile.profile ? profile.profile._id : null} following={profile.profile ? profile.profile.following : null} /></Route>
           <Route path="/app/create" component={CreatePost}></Route>
