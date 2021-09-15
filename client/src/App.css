@@ -1,0 +1,985 @@
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
+:root {
+    --primary-color: black;
+    --secondary-color: rgb(218, 218, 218);
+    --secondary-color2: rgb(160, 160, 160);
+    --second-color: rgb(22, 149, 233);
+    --second-color2: rgb(143, 209, 253);
+    --gradient-color: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    --insta-font: "Grand Hotel", cursive;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+hr {
+    margin: 0;
+}
+
+button {
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+ul {
+    list-style: none;
+}
+
+input {
+    border: 1px solid var(--secondary-color);
+    background-color: whitesmoke;
+    font-size: 12px;
+    border-radius: 3px;
+    text-align: center;
+    padding: 3px 20px;
+}
+
+input::placeholder {
+    color: var(--secondary-color2)
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+.Navbar {
+    background-color: white;
+    border-bottom: .5px solid var(--secondary-color);
+    font-size: 20px;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.Navbar .container {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navLogo {
+    cursor: pointer;
+    user-select: none;
+}
+
+.navSearch input {
+    font-size: 15px;
+    height: 30px;
+}
+
+.navSearch input:focus {
+    outline: none;
+    text-align: left;
+}
+
+i {
+    color: var(--secondary-color2);
+    font-size: 20px;
+}
+
+.active {
+    color: var(--primary-color) !important
+}
+
+.navIcons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.navIcons img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.logoutPop {
+    position: absolute;
+    right: 50px;
+    font-size: 11px;
+    font-weight: 400;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transform-origin: top right;
+    overflow: hidden;
+    padding: 20px;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out 0s;
+
+}
+
+.logoutPop.active {
+    transform: scale(1);
+    transition: transform .3s ease-in-out var(--transition-cubic);
+}
+
+.logoutPop ul,
+li {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.logoutPop i {
+    font-size: 12px;
+    color: black;
+    margin-right: 10px;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 20px;
+    background-color: whitesmoke;
+}
+
+.login main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login .footer {
+    position: relative;
+    bottom: 20px;
+}
+
+.loginWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px;
+    width: 400px;
+}
+
+.loginError {
+    font-size: 10px;
+    color: red;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid var(--secondary-color);
+}
+
+.loginWrapper h1 {
+    font-family: var(--insta-font);
+    font-weight: 500;
+    font-size: 60px;
+    text-align: center;
+    user-select: none;
+}
+
+.loginTitle h2 {
+    color: var(--secondary-color2);
+    font-size: 20px;
+    text-align: center;
+}
+
+.loginInput {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.loginInput input {
+    text-align: left;
+    padding: 8px;
+    width: 300px;
+}
+
+.loginInputPassword {
+    border: 1px solid var(--secondary-color);
+    background-color: whitesmoke;
+    font-size: 12px;
+    border-radius: 3px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.passwordButton {
+    font-weight: 600;
+    cursor: pointer;
+    color: black;
+    font-size: 15px;
+}
+
+.loginInputPassword input {
+    background-color: none;
+    border: none;
+    width: 17rem;
+}
+
+.loginInput button {
+    border-radius: 5px;
+    background-color: var(--second-color);
+    font-weight: 500;
+    padding: 5px;
+    font-size: 15px;
+    color: white;
+    width: 100%;
+}
+
+.loginInput button:disabled {
+    background-color: var(--second-color2);
+}
+
+.loginHelperText {
+    font-size: 12px;
+    color: rgb(3, 36, 73);
+}
+
+.loginCondition {
+    font-size: 12px;
+    color: var(--secondary-color2);
+}
+
+.loginHelperText:hover {
+    text-decoration: none;
+}
+
+.helperText {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    width: 400px;
+}
+
+.helperText span {
+    padding-left: 10px;
+    color: var(--second-color);
+    font-weight: 600;
+}
+
+/* Profile Component */
+
+.profileTop {
+    padding: 40px 50px;
+    display: flex;
+}
+
+.profileTopLeft {
+    flex: 1;
+}
+
+.profilePicture {
+    display: flex;
+    justify-content: center;
+    object-fit: cover;
+}
+
+.profilePicture img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    object-position: top;
+}
+
+.profileTopRight {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profileTopRightOne {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 400px;
+}
+
+.profileTopRightOne h1 {
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.profileTopRightOne button {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    border: .5px solid var(--secondary-color)
+}
+
+.profileFollow {
+    font-size: 15px;
+    color: var(--second-color);
+    cursor: pointer;
+}
+
+.profileTopRightTwo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 400px;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.profileTopRightTwo span {
+    font-weight: 600;
+}
+
+.profileName {
+    align-self: flex-start;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.profileMiddle {
+    display: flex;
+    padding: 10px 100px;
+    gap: 30px;
+}
+
+.profileStory img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    padding: 3px;
+    border: .5px solid var(--secondary-color);
+}
+
+.profileStory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.profileStory .StoryText {
+    font-weight: 500;
+}
+
+.postHeader ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 50px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--secondary-color2);
+    border-top: 1px solid var(--secondary-color);
+}
+
+.postHeader ul i {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.postHeaderItem {
+    height: 40px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.postHeaderItem.active {
+    border-top: 1px solid black;
+}
+
+.postItem {
+    width: 30%;
+    height: 300px;
+    padding: 4px;
+    cursor: pointer;
+    transition: ease;
+}
+
+.postItem img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.profile .footer {
+    position: relative;
+    bottom: 20px;
+    text-align: center;
+    margin-top: 100px;
+    user-select: none;
+    font-size: 13px;
+    color: var(--secondary-color2);
+}
+
+.profile .footer ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+/* Home */
+.StoryWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.homeStory {
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.homeStory img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    padding: 3px;
+    background-image: var(--gradient-color)
+}
+
+.homeStory .StoryText {
+    font-size: 12px;
+}
+
+.homeProfile img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    padding: 3px;
+}
+
+.homeSuggestion {
+    padding: 20px 5px;
+}
+
+.homeSuggestionProfile img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    padding: 3px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 100px;
+    user-select: none;
+    font-size: 13px;
+    color: var(--secondary-color2);
+}
+
+.footer ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+/* Post Component */
+.postOptions i {
+    font-size: 15px !important;
+}
+
+.postComponentTitle {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.postPicture img {
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.postProfilePicture img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    padding: 3px;
+}
+
+.postProfileName {
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.postLocation {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.postLeftIcons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.postComponent i {
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+}
+
+.postComponentRight {
+    font-size: 10px;
+    user-select: none;
+    color: var(--second-color);
+}
+
+.postBody .postProfileName {
+    margin: 0;
+}
+
+.postBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px 10px;
+}
+
+.showComment div,
+.showComment span {
+    font-size: 11px;
+}
+
+.showComment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px 10px;
+}
+
+.postBody>div {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.postBodyDescription {
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.postBody span {
+    font-size: 12px;
+}
+
+.postComment {
+    height: 30px;
+}
+
+.postComment button {
+    border-radius: 10px;
+    background-color: transparent;
+    color: var(--second-color);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.postComment button:disabled {
+    color: var(--second-color2);
+}
+
+.postComment input {
+    width: 100%;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+}
+
+/* Create Post */
+
+.createPost {
+    padding: 30px 0;
+}
+
+.createPostTitle {
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.getPostImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    height: 400px;
+    width: 95%;
+    margin: auto;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-bottom: 50px;
+}
+
+.postImagefile {
+    display: flex;
+    justify-content: center;
+}
+
+.postImagefile img {
+    padding: 10px;
+    filter: brightness(90%);
+    width: 50%;
+    border-radius: 15px;
+    height: 50%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-bottom: 50px;
+}
+
+.getPostDetails {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.getPostDetails input {
+    margin-bottom: 15px;
+    background-color: white;
+    height: 40px;
+    text-align: left;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.getPostDetails textarea:focus {
+    outline: none;
+}
+
+.getPostDetails label {
+    font-size: 15px;
+}
+
+.getPostDetails button {
+    background-color: var(--second-color);
+    border-radius: 5px;
+    height: 40px;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.getPostImage i {
+    color: black;
+}
+
+
+/* Edit Profile */
+.editProfile {
+    margin: 50px;
+}
+
+.editProfileHead {
+    justify-content: center;
+    display: flex;
+    padding: 30px;
+}
+
+.editProfileHead img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.editProfileHeadLeft {
+    margin: 10px;
+}
+
+.editProfileHeadUpload {
+    color: var(--second-color);
+    font-size: 10px;
+    font-weight: 600;
+    padding-left: 20px;
+    cursor: pointer;
+
+}
+
+.editProfileHeadLeft input[type=text] {
+    text-align: left;
+    background-color: white;
+    font-size: 15px;
+    width: 90%;
+}
+
+.editProfile button {
+    background-color: var(--second-color);
+    width: 80%;
+    border-radius: 10px;
+    color: white;
+    margin: 20px auto;
+}
+
+/* Activate Page */
+.activate {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 50px);
+    align-items: center;
+    justify-content: center;
+}
+
+.activate nav {
+    position: absolute;
+    top: 20px;
+    font-size: 15px;
+    color: white;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    font-weight: 300;
+    gap: 50px;
+    padding: 0 20px;
+}
+
+.activate::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://images.pexels.com/photos/1092671/pexels-photo-1092671.jpeg?auto=compress&cs=tinysrgb&h=650&w=940");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(10%);
+    z-index: -10;
+}
+
+.activate h1 {
+    font-family: var(--insta-font);
+    font-size: 50px;
+}
+
+.activate h1,
+.activate p {
+    z-index: 100;
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.activate h1 img {
+    width: 150px;
+}
+
+.activateButton {
+    z-index: 100;
+    background-image: var(--gradient-color);
+    color: white;
+    padding: 5px 10px;
+    width: 100px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.activateMessage {
+    color: white;
+    z-index: 100;
+    font-size: 10px;
+}
+
+.resetPassword {
+    border: 1px solid var(--secondary-color);
+    background-color: whitesmoke;
+    font-size: 12px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+.resetPassword .textfield {
+    width: 190px;
+}
+
+.resetPassword input {
+    border: none;
+    text-align: left;
+}
+
+
+@media screen and (max-width:991px) {
+    .homeRight {
+        display: none;
+    }
+
+    .navSearch input {
+        font-size: 12px;
+        height: 20px;
+    }
+
+    i {
+        font-size: 15px;
+    }
+}
+
+
+@media screen and (max-width:522px) {
+    .navSearch input {
+        font-size: 8px;
+    }
+
+    .navIcons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .navLogo img {
+        width: 70px;
+    }
+
+    i {
+        font-size: 12px;
+    }
+
+    .navIcons img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .homeStory img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .postProfilePicture img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .postProfileName {
+        font-size: 10px;
+    }
+
+    .postComponent i {
+        font-size: 15px;
+    }
+
+    .postComponentRight {
+        font-size: 7px;
+    }
+
+    .postComment button {
+        font-size: 8px;
+    }
+
+    .postComment .icon {
+        display: none;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .navSearch input {
+        font-size: 5px;
+    }
+
+    .navIcons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .navLogo img {
+        width: 50px;
+    }
+
+    i {
+        font-size: 12px;
+    }
+
+    .navIcons img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .StoryWrapper {
+        display: none;
+    }
+
+    .homeStory img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .postProfilePicture img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .postProfileName {
+        font-size: 8px;
+    }
+
+    .postComponent i {
+        font-size: 10px;
+    }
+
+    .postComponentRight {
+        font-size: 7px;
+    }
+
+    hr {
+        display: none;
+    }
+
+    .showComment {
+        display: none;
+    }
+
+    .postComment {
+        display: none;
+    }
+}
