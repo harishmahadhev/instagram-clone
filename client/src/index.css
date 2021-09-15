@@ -1,0 +1,23 @@
+* {
+  font-family: 'Roboto';
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: whitesmoke;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+button {
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
