@@ -5,6 +5,7 @@ import * as api from "../api/Api";
 import { refreshPage } from "./Shared";
 
 export default function PostComponent({ post, profile }) {
+  console.log("POST COMPONENT", post);
   const [likes, setLikes] = useState(post.likes);
   const [comment, setComment] = useState(post.comments);
   const [text, setText] = useState("");

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Home({ posts, profile, users }) {
   const { loading } = useContext(varCtx);
+  console.log(posts);
   return (
     <div className="row ">
       <div className="col-lg-8 col-md-12 col-sm-12">
@@ -22,7 +23,11 @@ export default function Home({ posts, profile, users }) {
           </div>
         ) : (
           posts.map((post) => (
-            <PostComponent key={post._id} post={post} profile={profile} />
+            <PostComponent
+              key={post._id}
+              post={post ? post : null}
+              profile={profile ? profile : null}
+            />
           ))
         )}
       </div>
