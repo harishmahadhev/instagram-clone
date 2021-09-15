@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const API = axios.create({ baseURL: "http://localhost:5000" })
+const API = axios.create({ baseURL: "https://hash-insta.herokuapp.com" })
 
 API.interceptors.request.use((req) => {
     if (Cookies.get("--t")) {
