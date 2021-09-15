@@ -106,6 +106,47 @@ loginRouter.route("/activate")
         res.status(200).json({ message: "Your Account is activated Successfully" })
     })
 
+loginRouter
+    .route("/forgot")
+    .post(async (req, res) => {
+        const { email } = req.body;
+        try {
+            crypto.randomBytes(32, async (err, buffer) => {
+                if (err) console.log(err)
+                const token = buffer.toString("hex");
+                const isExists = await userModel.findOne({ email });
+                if (!isExists) return res.status(404).json({ message: "User doesn't Exists" })
+                isExists.resettoken = token;
+                isExists.expiretoken = Date.now() + 1200000;
+                await isExists.save();
+                const mail = await resetMail(email, token);
+                if (!mail) return res.status(409).json({ message: "Something went wrong" })
+                res.status(200).json({ message: "Please Check the mail to reset your password (check spam folder also)" })
+            })
+        } catch (error) {
+            res.json({ message: error })
+        }
+    })
+
+loginRouter
+    .route("/reset")
+    .post(async (req, res) => {
+        const { token, password } = req.body;
+        try {
+            const user = await userModel.findOne({ resettoken: token, expiretoken: { $gt: Date.now() } })
+            if (!user) return res.status(408).json({ message: "Request Timeout Please Try again Later" })
+            const salt = await bcrypt.genSalt(12);
+            const hashedpassword = await bcrypt.hash(password, salt);
+            user.password = hashedpassword;
+            user.resettoken = undefined;
+            user.expiretoken = undefined;
+            await user.save()
+            res.status(200).json({ message: "Password is updated Successfully" })
+        } catch (error) {
+            res.json({ message: error })
+        }
+    })
+
 loginRouter.route("/signup/:id")
     .get(async (req, res) => {
         const { id } = req.params;
