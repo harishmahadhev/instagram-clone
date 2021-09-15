@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/keys')
 const { userModel } = require('../database/models/models');
 const { signupValidation, signinValidation } = require('../shared/validation');
-const { activateMail } = require('../shared/mailer');
+const { activateMail, resetMail } = require('../shared/mailer');
 
 // User Signup Route
 loginRouter.route("/signup")
