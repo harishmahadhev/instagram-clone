@@ -1,16 +1,17 @@
 const express = require('express');
 const loginRouter = express.Router();
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto')
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/keys')
 const { userModel } = require('../database/models/models');
 const { signupValidation, signinValidation } = require('../shared/validation');
+const { activateMail } = require('../shared/mailer');
 
 // User Signup Route
-
 loginRouter.route("/signup")
     .get(async (req, res) => {
-        const result = await userModel.find({})
+        const result = await userModel.find({}).select("-password").sort({ _id: -1 })
         res.status(200).send(result);
     })
     .post(async (req, res) => {
@@ -27,15 +28,25 @@ loginRouter.route("/signup")
 
             // Encrypting the user Password
             const salt = await bcrypt.genSalt(12);
-            console.log(salt)
             password = await bcrypt.hash(req.body.password, salt);
+            crypto.randomBytes(32, async (err, buffer) => {
+                if (err) console.log(err)
+                const token = buffer.toString('hex');
 
-            // Saving the document into database
-            const result = new userModel({ name, email, password });
-            await result.save()
+                // Saving the document into database
+                const result = new userModel({ email, password, name, resettoken: token, expiretoken: Date.now() + 1200000 })
+                await result.save()
 
-            // Sending response to the user
-            res.status(200).json({ message: "Account created successfully" })
+                // Sending activate link to the Mail
+                const mail = await activateMail(email, token);
+                if (!mail) return res.status(409).json({ message: "Something went wrong, Make sure you entered valid email" })
+
+                // Sending response to the user
+                res.status(200).json({ message: "Please Check the mail to activate the account (including spam folder)" })
+            })
+
+
+
         } catch (error) {
             res.json({ error })
             console.log(error)
@@ -58,7 +69,12 @@ loginRouter.route("/signin")
             // Checking the user email
             const isExist = await userModel.findOne({ email })
             if (!isExist) return res.status(404).json({ message: "User does'nt Exists" });
-
+            // Check if account is active
+            if (!isExist.active) {
+                if (!isExist.expiretoken || isExist.expiretoken < Date.now())
+                    await userModel.findByIdAndRemove(isExist._id)
+                return res.status(404).json({ message: "Please Activate your account" })
+            }
             // Checking the user Password
             const isPasswordCorrect = await bcrypt.compare(password, isExist.password);
             if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
@@ -73,6 +89,21 @@ loginRouter.route("/signin")
             res.json({ error })
             console.log(error)
         }
+    })
+
+loginRouter.route("/activate")
+    .post(async (req, res) => {
+        const { token } = req.body
+        const user = await userModel.findOne({ resettoken: token, expiretoken: { $gt: Date.now() } })
+        if (!user) {
+            await userModel.findOneAndRemove({ resettoken: token })
+            return res.status(408).json({ message: "Request Timeout Please create your account again" })
+        }
+        user.active = true;
+        user.resettoken = undefined;
+        user.expiretoken = undefined;
+        user.save();
+        res.status(200).json({ message: "Your Account is activated Successfully" })
     })
 
 loginRouter.route("/signup/:id")

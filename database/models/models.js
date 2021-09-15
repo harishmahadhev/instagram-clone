@@ -1,3 +1,4 @@
+const { boolean } = require('joi')
 const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Schema.Types
 
@@ -8,22 +9,27 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     resettoken: String,
     expiretoken: Date,
+    active: { type: Boolean, required: true, default: false },
+    followers: [{ type: ObjectId, ref: "User" }],
+    following: [{ type: ObjectId, ref: "User" }],
+    pic: { type: String, default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" },
 })
 
 // Model for post
 const postSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
     body: {
         type: String,
         required: true
     },
     photo: {
         type: String,
-        default: "https://images.pexels.com/photos/1209843/pexels-photo-1209843.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+        required: true
     },
+    location: {
+        type: String
+    },
+    likes: [{ type: ObjectId, ref: "User", unique: true }],
+    comments: [{ text: String, postedby: { type: ObjectId, ref: "User" } }],
     postedby: {
         type: ObjectId,
         ref: "User"
