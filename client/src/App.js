@@ -36,7 +36,7 @@ export default function App() {
   }, []);
   return (
     <div className="app">
-      <Navbar profile={profile} />
+      <Navbar profile={profile} users={users} />
       <div className="container">
         <Switch>
           <Route path="/app/home"><Home posts={posts} users={users} profile={profile} /></Route>

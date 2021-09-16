@@ -89,6 +89,61 @@ a:hover {
     text-align: left;
 }
 
+.Searchpopup {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    position: absolute;
+    z-index: 100;
+    top: 60px;
+    left: 30%;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    border-radius: 10px;
+    transform-origin: top center;
+    font-size: 12px;
+    transform: scale(0);
+    transition: transform 0.3s ease 0s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.Searchpopup ul {
+    margin: 0;
+    padding: 0;
+}
+
+.Searchpopup li {
+    margin: 15px;
+    font-weight: 300;
+}
+
+.Searchpopup img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.Searchpopup.active {
+    transform: scale(1);
+    transition: transform .3s ease-in-out var(--transition-cubic);
+}
+
+.Searchpopup::-webkit-scrollbar {
+    width: 10px;
+}
+
+.Searchpopup::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 100px;
+}
+
+.Searchpopup::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.164);
+}
+
 i {
     color: var(--secondary-color2);
     font-size: 20px;
@@ -867,6 +922,11 @@ li {
 
 
 @media screen and (max-width:522px) {
+    .Searchpopup {
+        width: 200px;
+        height: 100px;
+    }
+
     .navSearch input {
         font-size: 8px;
     }
