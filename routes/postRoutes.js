@@ -1,4 +1,3 @@
-const { compareSync } = require('bcryptjs');
 const express = require('express');
 const { postModel, userModel } = require('../database/models/models');
 const postRouter = express.Router();
